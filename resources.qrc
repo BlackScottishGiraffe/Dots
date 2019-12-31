@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/blueLine.png</file>
+        <file>resources/blueSqr.png</file>
+        <file>resources/blueVLine.png</file>
+        <file>resources/dot.png</file>
+        <file>resources/DOTS.png</file>
+        <file>resources/inactiveLine.png</file>
+        <file>resources/inactiveSqr.png</file>
+        <file>resources/inactiveVLine.png</file>
+        <file>resources/orangeLine.png</file>
+        <file>resources/orangeSqr.png</file>
+        <file>resources/orangeVLine.png</file>
+        <file>resources/resources.qrc</file>
+    </qresource>
+</RCC>
