@@ -133,4 +133,6 @@ void GameField::activateAI(AI *BOT)
     vsAI = true;
     connect(&GM,SIGNAL(sendToAI(QVector<int>,QVector<int>)),BOT,SLOT(getInfo(QVector<int>,QVector<int>)));
     connect(BOT,SIGNAL(makeMove(int,int)),&GM,SLOT(moveMade(int,int)));
+    if(GM.returnPlayerMove() == true)
+        GM.freeLines();
 }

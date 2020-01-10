@@ -116,12 +116,11 @@ void GameMaster::freeLines()
                 freeColumns.push_back(j);
             }
     emit sendToAI(freeRows,freeColumns);
-
 }
 
 void GameMaster::save()
 {
-    QFile savefile("D:/Kurs/Dots/savedgame.bin");
+    QFile savefile("savedgame.bin");
     savefile.open(QIODevice::WriteOnly);
     QDataStream out(&savefile);
     out << row << column << movesLeft << playerMove;
@@ -163,7 +162,7 @@ void GameMaster::save()
 
 void GameMaster::load()
 {
-    QFile savefile("D:/Kurs/Dots/savedgame.bin");
+    QFile savefile("savedgame.bin");
     savefile.open(QIODevice::ReadOnly);
     QDataStream in(&savefile);
     in >> row >> column >> movesLeft >> playerMove;
@@ -211,6 +210,6 @@ void GameMaster::load()
 
 void GameMaster::deleteFile()
 {
-    QFile savefile("D:/Kurs/Dots/savedgame.bin");
+    QFile savefile("savedgame.bin");
     savefile.remove();
 }

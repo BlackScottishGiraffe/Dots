@@ -12,12 +12,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->setupUi(this);
     connect(&GF,SIGNAL(restart()),this,SLOT(startNewGame()));
     connect(&GF,SIGNAL(exit()),this,SLOT(exit()));
-    QFile load("D:/Kurs/Dots/savedgame.bin");
+    QFile load("savedgame.bin");
     if(load.exists())
     {
         ui->continue_2->setEnabled(1);
         ui->actionContinue_Last_Game->setEnabled(1);
     }
+    BOT.enable(false);
 }
 
 MainWindow::~MainWindow()
@@ -27,7 +28,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::startNewGame()
 {
-    BOT.enable(false);
     NewGameWindow ngw(this);
     ngw.show();
     if (ngw.exec() == NewGameWindow::Accepted)
@@ -38,20 +38,21 @@ void MainWindow::startNewGame()
            BOT.enable(true);
            GF.activateAI(&BOT);
         }
-
+        GF.show();
+        this->hide();
     }
-    GF.show();
-    this->hide();
 }
 
 void MainWindow::continueGame()
 {
+    //GameField GF;
     GF.loadPrevGame();
     QMessageBox box;
     box.setText("Continue game with Computer or Player 2?");
     box.addButton("Player 2", QMessageBox::YesRole);
-    box.addButton("Computer", QMessageBox::NoRole);
-    if (box.exec() == QMessageBox::NoRole)
+    QPushButton *comp = box.addButton("Computer", QMessageBox::NoRole);
+    box.exec();
+    if (box.clickedButton() == comp)
     {
         BOT.enable(true);
         GF.activateAI(&BOT);
